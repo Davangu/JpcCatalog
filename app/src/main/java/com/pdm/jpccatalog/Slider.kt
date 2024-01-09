@@ -36,7 +36,7 @@ fun AdvSlider() {
         Slider(
             value = sliderPosition,
             onValueChange = { sliderPosition = it
-                if (sliderPosition == 100f) openAlert = true},
+                if (sliderPosition > 90f) openAlert = true},
             valueRange = 0f..100f,
             steps = 9
         )

@@ -3,7 +3,10 @@ package com.pdm.jpccatalog
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,6 +23,11 @@ fun Screen1(navigationController: NavHostController) {
             .fillMaxSize()
             .background(Color.Blue)
     ) {
+        var loading = true
+        var myProgress = 0.0f
+        if (loading) CircularProgressIndicator(progress = myProgress)
+
+        LinearProgressIndicator()
         Text(
             text = "screen1",
             modifier = Modifier
@@ -55,7 +63,7 @@ fun Screen3(navigationController: NavHostController) {
 }
 
 @Composable
-fun Screen4(navigationController: NavHostController, name:String) {
+fun Screen4(navigationController: NavHostController, name: String) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -68,14 +76,16 @@ fun Screen4(navigationController: NavHostController, name:String) {
 }
 
 @Composable
-fun Screen5(navigationController: NavHostController, name:String) {
-    Box(
+fun Screen5(navigationController: NavHostController, name: String) {
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Gray)
     ) {
         Text(text = "Me llamo $name", modifier = Modifier
-            .align(Alignment.Center)
-            .clickable { navigationController.navigate(Pantalla1.route) })
+            .align(Alignment.CenterHorizontally)
+            .clickable {
+                navigationController.navigate(Pantalla1.route)
+            })
     }
 }

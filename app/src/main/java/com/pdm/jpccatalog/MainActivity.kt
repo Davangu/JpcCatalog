@@ -83,20 +83,35 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    var myText by remember { mutableStateOf("") }
-                    var ena by remember { mutableStateOf(true) }
-
-                    Column() {
-                        GreetingPreview()
-                    }
+                    ScaffoldExample()
                 }
             }
         }
     }
 }
 
+@Composable
+fun DialogMain() {
+    var myText by remember { mutableStateOf("") }
+    var ena by remember { mutableStateOf(true) }
 
-@Preview(showBackground = true)
+    Column() {
+        //GreetingPreview()
+        var show by rememberSaveable {mutableStateOf(false)}
+        Button(onClick = {show = !show}){
+            Text("Clíckame")
+        }
+        Text(text = "clickado = $show")
+        if(show)
+            MyCustomDialog(
+                onDismiss = { show = false },
+                onConfirm = { show = false })
+        SimpleRecyclerView()
+    }
+}
+
+
+//@Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     var ena by remember { mutableStateOf(true) }
@@ -153,7 +168,7 @@ fun GreetingPreview() {
     }
 }
 
-@Preview
+//@Preview
 @Composable
 fun EasyPreview() {
     JpcCatalogTheme {
@@ -236,19 +251,19 @@ fun MyCard() {
 fun MyRadioButtonList(name: String, onItemSelected: (String) -> Unit) {
 
     Column(Modifier.fillMaxWidth()) {
-        Row(Modifier.fillMaxWidth()) {
+        Row(Modifier.fillMaxWidth().padding(6.dp)) {
             RadioButton(selected = name == "Yo", onClick = { onItemSelected("Yo") })
             Text("Yo")
         }
-        Row(Modifier.fillMaxWidth()) {
+        Row(Modifier.fillMaxWidth().padding(6.dp)) {
             RadioButton(selected = name == "Tu", onClick = { onItemSelected("Tu") })
             Text("Tu")
         }
-        Row(Modifier.fillMaxWidth()) {
+        Row(Modifier.fillMaxWidth().padding(6.dp)) {
             RadioButton(selected = name == "El", onClick = { onItemSelected("El") })
             Text("El")
         }
-        Row(Modifier.fillMaxWidth()) {
+        Row(Modifier.fillMaxWidth().padding(6.dp)) {
             RadioButton(selected = name == "Nosotros", onClick = { onItemSelected("Nosotros") })
             Text("Nosotros")
         }
@@ -360,7 +375,6 @@ fun MyCheckBoxText() {
 @Composable
 fun MySwitch() {
     var state by rememberSaveable { mutableStateOf(false) }
-
     Switch(
         checked = state,
         onCheckedChange = { state = !state },
@@ -483,7 +497,8 @@ fun MyTextFieldAdv() {
 @Composable
 fun MyTextField() {
     var myText by remember { mutableStateOf("") }
-    TextField(value = myText, onValueChange = { myText = it })
+    TextField(value = myText,
+        onValueChange = { myText = it })
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
