@@ -173,28 +173,6 @@ fun MyFAB() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MyTopAppBar(onClickDrawer: () -> Unit) {
-    TopAppBar(
-        title = { Text("Top App Bar") },
-        colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.LightGray),
-        navigationIcon = {
-            IconButton(onClick = { onClickDrawer() }) {
-                Icon(Icons.Filled.Menu, contentDescription = "Desc")
-            }
-        },
-        actions = {
-            IconButton(onClick = {}) {
-                Icon(Icons.Filled.Add, contentDescription = "Desc")
-            }
-            Spacer(modifier = Modifier.size(6.dp))
-            IconButton(onClick = {}) {
-                Icon(Icons.Filled.Close, contentDescription = "Desc")
-            }
-        }
-    )
-}
 
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)

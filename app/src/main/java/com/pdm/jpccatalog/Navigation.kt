@@ -85,7 +85,7 @@ fun Screen5(navigationController: NavHostController, name: String) {
         Text(text = "Me llamo $name", modifier = Modifier
             .align(Alignment.CenterHorizontally)
             .clickable {
-                navigationController.navigate(Pantalla1.route)
+                navigationController.navigate(MainScreen.route)
             })
     }
 }

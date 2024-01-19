@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -51,8 +52,8 @@ fun SimpleRecyclerView() {
                 Text(text = "Hola me llamo $it")
             }
         }
-        LazyColumn {
-            items(7) {
+        LazyColumn (Modifier.height(200.dp).fillMaxWidth()){
+            items(70) {
                 Text(text = "Este es el item $it")
             }
         }

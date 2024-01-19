@@ -61,7 +61,6 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavType
@@ -69,7 +68,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.pdm.jpccatalog.model.Routes
 import com.pdm.jpccatalog.model.Routes.*
 import com.pdm.jpccatalog.ui.theme.JpcCatalogTheme
 
@@ -83,7 +81,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ScaffoldExample()
+                    Navigate()
                 }
             }
         }
@@ -113,40 +111,39 @@ fun DialogMain() {
 
 //@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun Navigate() {
     var ena by remember { mutableStateOf(true) }
     var selected by remember { mutableStateOf("Yo") }
-    JpcCatalogTheme {
-        val myCheckboxes = checkOptions(listOf("David", "Mindblowing", "Estudia"))
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(15.dp)
-        ) {
-            val navigationController = rememberNavController()
-            NavHost(navController = navigationController, startDestination = Pantalla1.route) {
-                composable(Pantalla1.route) { Screen1(navigationController) }
-                composable(Pantalla2.route) { Screen2(navigationController) }
-                composable(Pantalla3.route) { Screen3(navigationController) }
-                composable(
-                    Pantalla4.route,
-                    arguments = listOf(navArgument("name") { type = NavType.StringType })
-                ) {
-                    Screen4(
-                        navigationController,
-                        it.arguments?.getString("name").orEmpty()
-                    )
-                }
-                composable(
-                    Pantalla5.route,
-                    arguments = listOf(navArgument("name") { defaultValue = "Pepe" })
-                ) {
-                    Screen5(
-                        navigationController,
-                        it.arguments?.getString("name").orEmpty()
-                    )
-                }
+    val myCheckboxes = checkOptions(listOf("David", "Mindblowing", "Estudia"))
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(15.dp)
+    ) {
+        val navigationController = rememberNavController()
+        NavHost(navController = navigationController, startDestination = MainScreen.route) {
+            composable(MainScreen.route) { Screen1(navigationController) }
+            composable(Pantalla2.route) { Screen2(navigationController) }
+            composable(Pantalla3.route) { Screen3(navigationController) }
+            composable(
+                Pantalla4.route,
+                arguments = listOf(navArgument("name") { type = NavType.StringType })
+            ) {
+                Screen4(
+                    navigationController,
+                    it.arguments?.getString("name").orEmpty()
+                )
             }
+            composable(
+                Pantalla5.route,
+                arguments = listOf(navArgument("name") { defaultValue = "Pepe" })
+            ) {
+                Screen5(
+                    navigationController,
+                    it.arguments?.getString("name").orEmpty()
+                )
+            }
+        }
 //            AdvSlider()
 //            MyDropDownMenu()
 //            MyBadgeBox()
@@ -164,7 +161,6 @@ fun GreetingPreview() {
 //            MySwitch()
 //            MyCheckBox()
 //            MyCheckBoxText()
-        }
     }
 }
 

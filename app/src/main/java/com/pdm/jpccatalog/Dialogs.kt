@@ -103,9 +103,9 @@ fun MyCustomDialog(
                     .padding(24.dp)
                     .fillMaxWidth()
             ) {
-                AccountItem("prueba@mail.com", R.drawable.avatar)
-                AccountItem("prueba2@mail.com", R.drawable.avatar)
-                AccountItem("Añadir nueva cuenta", R.drawable.add)
+                AccountItem("prueba@mail.com", R.drawable.batman)
+                AccountItem("prueba2@mail.com", R.drawable.daredevil)
+                AccountItem("Añadir nueva cuenta", R.drawable.thor)
             }
         },
         onDismissRequest = { onDismiss() },
